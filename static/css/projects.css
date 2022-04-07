@@ -87,3 +87,62 @@ ol li .descr {
     font-size: 0.8rem;
     font-weight: 300
 }
+
+button {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+}
+
+nav.amazing-tabs {
+    background-color: var(--white);
+    border-radius: 2.5rem;
+    user-select: none;
+    padding-top: 1rem;
+}
+
+.main-tabs-container {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.main-tabs-wrapper {
+    position: relative;
+}
+
+ul.main-tabs,
+ul.filter-tabs {
+    list-style-type: none;
+    display: flex;
+}
+
+ul.main-tabs li {
+    display: inline-flex;
+    position: relative;
+    padding: 1.5rem;
+    z-index: 1;
+}
+
+.avatar,
+.avatar img {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.avatar img {
+    object-fit: cover;
+}
+
+.round-button:hover,
+.round-button.active {
+    color: var(--round-button-active-color);
+}
+
+.round-button svg {
+    pointer-events: none;
+    height: 2.8rem;
+    width: 2.8rem;
+    transform: translate(0, 0);
+}
