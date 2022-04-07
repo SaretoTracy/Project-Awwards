@@ -7,3 +7,10 @@ def index(request):
     
     
     return render(request, 'index.html')
+
+def projects(request):  
+
+    # Function that gets the date
+    
+    
+    return render(request, 'projects.html')
