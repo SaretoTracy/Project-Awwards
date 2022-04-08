@@ -92,7 +92,7 @@
             <div class="row">
                 {% for pic in posts %}
                 <div class="card col-md-4" style="width: 26rem;">
-                    <a href="">
+                    <a href="{% url 'image' pic.id %}">
                         <img src="{{pic.image.url}}" data-target="#imageModal{{pic.id}}" data-toggle="modal" alt="" class="img-fluid" id="eachimage" style="height: 300px; width: 1000px"></a>
                     <div class="card-body">
                         <h5 class="card-title">{{pic.title}}</h5>

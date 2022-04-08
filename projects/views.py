@@ -20,6 +20,14 @@ def projects(request):
     
     return render(request, 'projects.html',{'posts':post})
 
+def project_details(request, image_id):
+    try:
+        image = Projects.objects.get(id=image_id)
+    except ObjectDoesNotExist:
+        raise Http404()
+
+    return render(request, 'details.html', {'image': image})
+
 class ProfileList(APIView):
    def get(self, request, format=None):
        all_Profile = Profile.objects.all()
