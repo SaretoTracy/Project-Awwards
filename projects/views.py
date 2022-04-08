@@ -24,7 +24,12 @@ class ProfileList(APIView):
        all_Profile = Profile.objects.all()
        serializers = ProfileSerializer(all_Profile, many=True)
        return Response(serializers.data)
-    
+    def post(self, request, format=None):
+    serializers = ProfileSerialize(data=request.data)
+    if serializers.is_valid():
+        serializers.save()
+        return Response(serializers.data, status=status.HTTP_201_CREATED)
+    return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ProjectsList(APIView):
@@ -32,3 +37,10 @@ class ProjectsList(APIView):
        all_Projects = Projects.objects.all()
        serializers = ProjectsSerializer(all_Projects, many=True)
        return Response(serializers.data)
+
+    def post(self, request, format=None):
+    serializers = ProjectsSerialize(data=request.data)
+    if serializers.is_valid():
+        serializers.save()
+        return Response(serializers.data, status=status.HTTP_201_CREATED)
+    return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
