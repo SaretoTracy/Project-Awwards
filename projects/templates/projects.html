@@ -89,42 +89,22 @@
 
         </ol>
         <div class="container">
-            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-                <div class="col">
-                    <div class="p-3 overlay__inner">Row column</div>
+            <div class="row gx-5">
+                {% for pic in posts %}
+                <div class="card col">
+                    <div class="p-3 ">
+                        <a href="">
+                            <img src="{{pic.image.url}}" data-target="#imageModal{{pic.id}}" data-toggle="modal" alt="" class="img-fluid" id="eachimage" style="height: 300px; width: 400px"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{pic.title}}</h5>
+                            <p class="card-text">{{pic.description}}</p>
+                            <p class="card-text"><small class="text-muted">posted:{{pic.link}} ago</small></p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col">
-                    <div class="p-3 overlay__inner">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 overlay__inner">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 overlay__inner">Row column</div>
-                </div>
-
-                <div class="col">
-                    <div class="p-3 overlay__inner">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 overlay__inner">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 overlay__inner">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 overlay__inner">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 overlay__inner">Row column</div>
-                </div>
-                <div class="col">
-                    <div class="p-3 overlay__inner">Row column</div>
-                </div>
+                {% endfor %}
             </div>
         </div>
-
-    </div>
 </body>
 
 </html>

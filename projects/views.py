@@ -15,16 +15,17 @@ def index(request):
 def projects(request):  
 
     # Function that gets the date
+    post = Projects.objects.all()
     
     
-    return render(request, 'projects.html')
+    return render(request, 'projects.html',{'posts':post})
 
 class ProfileList(APIView):
    def get(self, request, format=None):
        all_Profile = Profile.objects.all()
        serializers = ProfileSerializer(all_Profile, many=True)
        return Response(serializers.data)
-    def post(self, request, format=None):
+   def post(self, request, format=None):
     serializers = ProfileSerialize(data=request.data)
     if serializers.is_valid():
         serializers.save()
@@ -38,7 +39,7 @@ class ProjectsList(APIView):
        serializers = ProjectsSerializer(all_Projects, many=True)
        return Response(serializers.data)
 
-    def post(self, request, format=None):
+   def post(self, request, format=None):
     serializers = ProjectsSerialize(data=request.data)
     if serializers.is_valid():
         serializers.save()
