@@ -4,16 +4,16 @@ from django.contrib.auth.models import User
 import datetime as dt
 # Create your models here.
 
-class profile  (models.Model):
+class Profile  (models.Model):
     bio = models.CharField(max_length=250)
     image = CloudinaryField('image/', default="")
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     def __str__(self):
         return self.bio
     
-    def save_projects(self):
+    def save_Profile(self):
         self.save()
-    def delete_projects(self):
+    def delete_Profile(self):
         self.delete()
 
 class Projects (models.Model):
