@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'projects.apps.ProjectsConfig',
     'bootstrap5'
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -85,6 +86,18 @@ DATABASES = {
         'PASSWORD':'kimachas',
     }
 }
+# adding config
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import django_heroku
+
+
+cloudinary.config( 
+  cloud_name = "dpusync50", 
+  api_key = "844883543182319", 
+  api_secret = "0ZkV4QOC5yPqtDdIUSC2ItHlBRs" 
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
