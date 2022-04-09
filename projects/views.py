@@ -88,6 +88,10 @@ def post_project(request):
     else:
         post_form = ProjectsPostForm()
     return render(request,'post_project.html',{"post_form":post_form})
+def profile(request):
+    image = Projects.objects.all()
+    profile = Profile.objects.all()
+    return render(request, 'profile.html', {"profile": profile, "image": image})
 class ProfileList(APIView):
    def get(self, request, format=None):
        all_Profile = Profile.objects.all()

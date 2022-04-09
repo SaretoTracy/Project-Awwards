@@ -26,6 +26,7 @@ urlpatterns = [
     path('details/<int:project_id>', views.project_details, name='image'),
     path(r'^delete/(?P<project_id>\d+)$',views.delete,name='delete'),
     path('post/',views.post_project,name='post'),
+    path('profile/',views.profile,name="profile" ),
    
 
     
