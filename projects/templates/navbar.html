@@ -51,13 +51,10 @@
                         </button></a>
                             </li>
                             <li>
-                                <form class="navbar-form my-3" role="search" action="search">
-
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search" name="image">
-                                        <div class="input-group-btn search-bar">
-                                            <button class="btn btn-default" type="submit">search</button> </div>
-
+                                <form action="{% url 'search' %}" class="form-inline mr-auto my-1">
+                                    <div class="md-form form-sm my-0">
+                                        <input class="form-control form-control-sm mr-sm-2 mb-0" name="search" id="search_project" type="search" placeholder="Search by project name " aria-label="Search">
+                                        <button class="btn btn-outline-success" type="submit">Search</button>
                                     </div>
                                 </form>
                             </li>
