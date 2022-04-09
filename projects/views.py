@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Profile,Projects
+from django.contrib.auth.models import User
 from .serializer import ProfileSerializer,ProjectsSerializer
 
 # Create your views here.
@@ -18,14 +20,17 @@ def projects(request):
     post = Projects.objects.all()
     
     
+    
     return render(request, 'projects.html',{'posts':post})
+
+
 
 def project_details(request, image_id):
     try:
         image = Projects.objects.get(id=image_id)
     except ObjectDoesNotExist:
         raise Http404()
-
+    
     return render(request, 'details.html', {'image': image})
 
 class ProfileList(APIView):
