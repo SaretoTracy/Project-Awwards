@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
+from .forms import  RatingsForm
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Profile,Projects
@@ -26,12 +27,47 @@ def projects(request):
 
 
 def project_details(request, image_id):
-    try:
-        image = Projects.objects.get(id=image_id)
-    except ObjectDoesNotExist:
-        raise Http404()
-    
-    return render(request, 'details.html', {'image': image})
+   current_user = request.user
+   all_ratings = Rating.objects.filter(project_id=project_id).all()
+   project = Projects.objects.get(pk = project_id)
+   ratings = Rating.objects.filter(user=request.user,project=project_id).first()
+   rating_status = None
+   if ratings is None:
+       rating_status = False
+   else:
+       rating_status = True
+   if request.method == 'POST':
+       form = RatingsForm(request.POST)
+       if form.is_valid():
+           rate = form.save(commit=False)
+           rate.user = request.user
+           rate.project = project
+           rate.save()
+           post_ratings = Rating.objects.filter(project=project_id)
+#calculating design
+           design_ratings = [design.design_rating for design in post_ratings]
+           design_rating_average = sum(design_ratings) / len(design_ratings)
+#calculating content
+           content_ratings = [content.content_rating for content in post_ratings]
+           content_rating_average = sum(content_ratings) / len(content_ratings)
+#calculating usability
+           usability_ratings = [usability.usability_rating for usability in post_ratings]
+           usability_rating_average = sum(usability_ratings) / len(usability_ratings)
+ 
+     
+#calculating average
+           aggregate_average_rate = (design_rating_average + usability_rating_average + content_rating_average) / 3
+           print(aggregate_average_rate)
+           rate.design_rating_average = round(design_rating_average, 2)
+           rate.usability_rating_average = round(usability_rating_average, 2)
+           rate.content_rating_average = round(content_rating_average, 2)
+           rate.aggregate_average_rate = round(aggregate_average_rate, 2)
+           rate.save()
+           return HttpResponseRedirect(request.path_info)
+   else:
+       form = RatingsForm()
+   return render(request, 'details.html', {'current_user':current_user,'all_ratings':all_ratings,'project':project,'rating_form': form,'rating_status': rating_status})
+
 
 class ProfileList(APIView):
    def get(self, request, format=None):
