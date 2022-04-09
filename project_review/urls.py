@@ -23,7 +23,8 @@ urlpatterns = [
     path('projects/',views.projects,name = 'projects'),
     path('api/profile/', views.ProfileList.as_view()),
     path('api/projects/', views.ProjectsList.as_view()),
-    path('image/<int:project_id>', views.project_details, name='image'),
+    path('details/<int:project_id>', views.project_details, name='image'),
+    path(r'^delete/(?P<project_id>\d+)$',views.delete,name='delete'),
    
 
     

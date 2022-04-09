@@ -69,7 +69,12 @@ def project_details(request, project_id):
        form = RatingsForm()
    return render(request, 'details.html', {'current_user':current_user,'all_ratings':all_ratings,'project':project,'rating_form': form,'rating_status': rating_status})
 
-
+def delete(request,project_id):
+    current_user = request.user
+    project = Projects.objects.get(pk=project_id)
+    if project:
+        project.delete_project()
+    return redirect('details.html')
 class ProfileList(APIView):
    def get(self, request, format=None):
        all_Profile = Profile.objects.all()
