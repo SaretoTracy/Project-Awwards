@@ -2,7 +2,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Rating,Projects
+from .models import Rating,Projects,Profile
 
 class RatingsForm(forms.ModelForm):
     class Meta:
@@ -13,3 +13,10 @@ class ProjectsPostForm(forms.ModelForm):
     class Meta:
        model = Projects
        fields = ['title', 'image', 'user','description','link','technologies_used','location']
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['user', 'contact', 'bio', 'image']
+      
