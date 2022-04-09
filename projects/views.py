@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import  RatingsForm
+from django.http.response import HttpResponseRedirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Profile,Projects
+from .models import Profile,Projects,Rating
 from django.contrib.auth.models import User
 from .serializer import ProfileSerializer,ProjectsSerializer
 
@@ -26,7 +27,7 @@ def projects(request):
 
 
 
-def project_details(request, image_id):
+def project_details(request, project_id):
    current_user = request.user
    all_ratings = Rating.objects.filter(project_id=project_id).all()
    project = Projects.objects.get(pk = project_id)
