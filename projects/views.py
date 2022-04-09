@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import  RatingsForm
+from .forms import  RatingsForm, ProjectsPostForm
 from django.http.response import HttpResponseRedirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -75,6 +75,19 @@ def delete(request,project_id):
     if project:
         project.delete_project()
     return redirect('details.html')
+
+def post_project(request):
+    if request.method == 'POST':
+        post_form = ProjectsPostForm(request.POST,request.FILES) 
+        if post_form.is_valid():
+            new_post = post_form.save(commit = False)
+            new_post.user = request.user
+            new_post.save()
+        return redirect('home')
+
+    else:
+        post_form = ProjectsPostForm()
+    return render(request,'post_project.html',{"post_form":post_form})
 class ProfileList(APIView):
    def get(self, request, format=None):
        all_Profile = Profile.objects.all()
