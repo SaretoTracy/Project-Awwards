@@ -3,6 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from .forms import  RatingsForm, ProjectsPostForm,ProfileForm
 from django.http.response import HttpResponseRedirect
 from rest_framework.response import Response
+from django.contrib.auth import authenticate, login, logout
 from rest_framework.views import APIView
 from django.contrib import messages 
 from django.contrib.auth.decorators import login_required
@@ -129,6 +130,8 @@ def search(request):
     else:
         message = "You haven't searched for anything, please try again"
     return render(request, 'search.html', {'message': message})
+
+@login_required(login_url='login')
 def update_project(request, pk):
     post = Projects.objects.get(id=pk)
     form = ProjectsPostForm(instance=post)
@@ -147,6 +150,10 @@ def update_project(request, pk):
 
     context = { 'form':form }
     return render(request, 'post_project.html', context)
+@login_required(login_url='login')
+def logout_user(request):
+    logout(request)
+    return redirect('index')
 
 class ProfileList(APIView):
     

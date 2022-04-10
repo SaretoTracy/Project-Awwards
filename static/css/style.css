@@ -40,10 +40,20 @@ strong {
     font-weight: 600;
 }
 
+#random {
+    background-size: cover;
+    height: 50%;
+    border-radius: 20px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
 .overlay {
     width: 100%;
     max-width: 1140px;
     max-height: 640px;
+    color: white;
+    text-shadow: 2px 2px 2px red;
     padding: 8rem 16rem;
     display: flex;
     align-items: center;
