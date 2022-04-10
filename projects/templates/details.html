@@ -1,6 +1,28 @@
 {%extends 'base.html'%} {% load bootstrap5 %} {% block content %} {{ block.super}}
 
 <div class="container-fluid">
+    <div id="random" class="min-vh-75" style="background: #222 url('https://unsplash.it/1920/1080/?random') center center no-repeat;;">
+        <h1>Rate & Get your project rated in terms of:</h1>
+        <ol>
+            <li>
+
+                <div class="title">Design</div>
+                <div class="descr">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, porro.</div>
+            </li>
+            <li>
+
+                <div class="title">Usability</div>
+                <div class="descr">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, porro.</div>
+            </li>
+            <li>
+
+                <div class="title">Content</div>
+                <div class="descr">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis, porro.</div>
+            </li>
+
+
+        </ol>
+    </div>
 
     <!-- Looping through projects   -->
     <div class="row project">
@@ -25,8 +47,7 @@
                 </div>
                 <div class="col-md-4">
                     {% if project.user.username == current_user.username %}
-                    <a href="{% url 'delete-post' project.id %}" class="btn btn-danger">Delete</a>
-                    <a href="{% url 'updateproject' project.id %}" class="btn btn-danger">update</a> {% endif %}</div>
+                    <a href="{% url 'delete-post' project.id %}" class="btn btn-danger">Delete</a> {% endif %}</div>
             </div>
 
 

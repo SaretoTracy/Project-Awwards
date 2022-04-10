@@ -95,44 +95,14 @@ button {
     outline: none;
 }
 
-nav.amazing-tabs {
-    background-color: var(--white);
-    border-radius: 2.5rem;
-    user-select: none;
-    padding-top: 1rem;
-}
-
-.main-tabs-container {
-    padding: 0 1rem 1rem 1rem;
-}
-
-.main-tabs-wrapper {
-    position: relative;
-}
-
-ul.main-tabs,
-ul.filter-tabs {
-    list-style-type: none;
-    display: flex;
-}
-
-ul.main-tabs li {
-    display: inline-flex;
-    position: relative;
-    padding: 1.5rem;
-    z-index: 1;
-}
-
-.avatar,
-.avatar img {
-    height: 4rem;
-    width: 4rem;
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-.avatar img {
-    object-fit: cover;
+.image {
+    background: rgba(255, 255, 255, 0.375);
+    box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    background-image: url("/static/media/station.jpg") no-repeat cover cover;
 }
 
 .card-body {
@@ -173,4 +143,19 @@ ul.main-tabs li {
 
 .offcanvas {
     background-color: transparent;
+}
+
+#random {
+    background-size: cover;
+    height: 50%;
+    border-radius: 20px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    text-shadow: 2px 2px 2px #A8B8E2;
+}
+
+.all {
+    display: flex;
+    justify-content: space-between;
 }
