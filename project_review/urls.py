@@ -19,6 +19,7 @@ from projects import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index,name = 'index'),
@@ -34,6 +35,8 @@ urlpatterns = [
     path('accounts/', include('django_registration.backends.one_step.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('update_project/<str:pk>/', views.update_project, name='updateproject'),
+    
+
 
     
 

@@ -88,18 +88,18 @@ def delete_post(request, pk):
     return render(request, 'delete.html', context)
 @login_required(login_url='/accounts/login/')
 def post_project(request):
+    current_user = request.user
     if request.method == 'POST':
-        post_form = ProjectsPostForm.get(id=pk)
-        if post_form.is_valid():
-            new_post = post_form.save(commit = False)
-            new_post.user = request.user
-            new_post.save()
+        form =ProjectsPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            projects = form.save(commit=False)
+            projects.editor = current_user
+            projects.save()
         return redirect('projects')
-
+    
     else:
-        post_form = ProjectsPostForm()
-    return render(request,'post_project.html',{"post_form":post_form})
-
+        form =ProjectsPostForm()
+    return render(request, 'post_project.html', {"form": form})
 @login_required(login_url='/accounts/login/')    
 def profile(request):
     image = Projects.objects.all()
@@ -150,6 +150,7 @@ def update_project(request, pk):
     return render(request, 'post_project.html', context)
 
 class ProfileList(APIView):
+    
    def get(self, request, format=None):
        all_Profile = Profile.objects.all()
        serializers = ProfileSerializer(all_Profile, many=True)

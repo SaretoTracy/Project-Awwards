@@ -84,7 +84,7 @@ ol li .title {
 }
 
 ol li .descr {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 300
 }
 
@@ -152,7 +152,11 @@ button {
     margin-top: 2rem;
     margin-bottom: 2rem;
     color: white;
-    text-shadow: 2px 2px 2px #A8B8E2;
+    text-shadow: 2px 2px 2px red;
+}
+
+.descr {
+    font-size: 19px;
 }
 
 .all {
