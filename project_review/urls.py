@@ -24,7 +24,7 @@ urlpatterns = [
     path('api/profile/', views.ProfileList.as_view()),
     path('api/projects/', views.ProjectsList.as_view()),
     path('details/<int:project_id>', views.project_details, name='image'),
-    path(r'^delete/(?P<project_id>\d+)$',views.delete,name='delete'),
+    path('delete_post/<str:pk>/', views.delete_post, name='delete-post'),
     path('post/',views.post_project,name='post'),
     path('profile/',views.profile,name="profile" ),
     path('updateprofile/', views.updateprofile, name='updateprofile'),
