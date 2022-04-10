@@ -55,6 +55,9 @@ class Projects (models.Model):
     @classmethod
     def get_projects(cls):
         return cls.objects.all()
+    @classmethod
+    def update_project(cls,pk):
+        return cls.objects.get(id=pk)
 
     def __str__(self):
         return self.title

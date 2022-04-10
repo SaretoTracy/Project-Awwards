@@ -89,7 +89,7 @@ def delete_post(request, pk):
 @login_required(login_url='/accounts/login/')
 def post_project(request):
     if request.method == 'POST':
-        post_form = ProjectsPostForm(request.POST,request.FILES) 
+        post_form = ProjectsPostForm.get(id=pk)
         if post_form.is_valid():
             new_post = post_form.save(commit = False)
             new_post.user = request.user
@@ -130,7 +130,24 @@ def search(request):
     else:
         message = "You haven't searched for any term"
         return render(request,'search.html',{"message":message})
+def update_project(request, pk):
+    post = Projects.objects.get(id=pk)
+    form = ProjectsPostForm(instance=post)
 
+    if request.user != post.user:
+        messages.error(request, 'You are not the author of the post!')
+        return redirect('projects')
+
+    if request.method == 'POST':
+        form = ProjectsPostForm(request.POST, instance=post)
+        if form.is_valid():
+            print(request.POST)
+            image = form.save(commit=False)
+            image.save()
+            return redirect('projects')
+
+    context = { 'form':form }
+    return render(request, 'post_project.html', context)
 
 class ProfileList(APIView):
    def get(self, request, format=None):
