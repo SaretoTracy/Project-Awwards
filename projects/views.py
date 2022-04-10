@@ -121,15 +121,14 @@ def updateprofile(request):
 
 @login_required(login_url='/accounts/login/')
 def search(request):
-    if 'projects' in request.GET and request.GET["projects"]:
-        search_term = request.GET.get("projects")
-        search_projects = Projects.search_by_title(search_term)
-        message = f"{search_term}"
-
-        return render(request,'search.html', {"message":message,"projects":search_projects})
+    if 'project' in request.GET and request.GET['project']:
+        project = request.GET.get("project")
+        results = Projects.search_project(project)
+        message = f'project'
+        return render(request, 'search.html', {'projects': results, 'message': message})
     else:
-        message = "You haven't searched for any term"
-        return render(request,'search.html',{"message":message})
+        message = "You haven't searched for anything, please try again"
+    return render(request, 'search.html', {'message': message})
 def update_project(request, pk):
     post = Projects.objects.get(id=pk)
     form = ProjectsPostForm(instance=post)
