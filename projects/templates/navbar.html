@@ -13,28 +13,20 @@
 
 <body>
 
-    <p>
 
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          Menu
-        </button>
-    </p>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-            <nav class="amazing-tabs">
+    <nav class="amazing-tabs">
 
-                <div class="main-tabs-container">
-                    <div class="main-tabs-wrapper">
-                        <ul class="main-tabs">
-                            <li>
-                                <button class=https://i.pinimg.com/564x/71/89/88/718988215800391b6050182a28ca6810.jpg "round-button" data-translate-value="0" data-color="red">
+        <ul class="main-tabs">
+            <li>
+                <a href="{%url 'projects'%}"><button class="round-button" style="--round-button-active-color: #00c853" data-translate-value="200%" data-color="green">
+                        <button class=https://i.pinimg.com/564x/71/89/88/718988215800391b6050182a28ca6810.jpg "round-button" data-translate-value="0" data-color="red">
                           <span class="avatar">
                             <img src="https://i.pinimg.com/564x/71/89/88/718988215800391b6050182a28ca6810.jpg" alt="user avatar" />
                           </span>
                         </button>
-                            </li>
-                            <li>
-                                <a href="{%url 'profile'%}"><button class="round-button" style="--round-button-active-color: #00c853" data-translate-value="200%" data-color="green">
+                    </li>
+                    <li>
+                        <a href="{%url 'profile'%}"><button class="round-button" style="--round-button-active-color: #00c853" data-translate-value="200%" data-color="green">
                                 <button class="round-button gallery active" style="--round-button-active-color: #2962ff" data-translate-value="100%" data-color="blue">
                           <svg fill="currentColor" viewBox="0 0 16 16">
                             <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
@@ -49,22 +41,20 @@
                             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                           </svg>
                         </button></a>
-                            </li>
-                            <li>
-                                <form action="{% url 'search' %}" class="form-inline mr-auto my-1">
-                                    <div class="md-form form-sm my-0">
-                                        <input class="form-control form-control-sm mr-sm-2 mb-0" name="search" id="search_project" type="search" placeholder="Search by project name " aria-label="Search">
-                                        <button class="btn btn-outline-success" type="submit">Search</button>
-                                    </div>
-                                </form>
-                            </li>
-                        </ul>
-
+            </li>
+            <li>
+                <form action="{% url 'search' %}" class="form-inline mr-auto my-1">
+                    <div class="md-form form-sm my-0">
+                        <input class="form-control form-control-sm mr-sm-2 mb-0" name="search" id="search_project" type="search" placeholder="Search by project name " aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
                     </div>
-                </div>
-            </nav>
+                </form>
+            </li>
+        </ul>
+
         </div>
-    </div>
+        </div>
+    </nav>
 
 
 </body>
