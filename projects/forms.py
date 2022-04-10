@@ -18,5 +18,5 @@ class ProjectsPostForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user', 'contact', 'bio', 'image']
+        fields = ['user', 'contact', 'bio', 'image']
       

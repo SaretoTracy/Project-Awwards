@@ -5,6 +5,7 @@ from django.http.response import HttpResponseRedirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib import messages 
+from rest_framework import status
 from .models import Profile,Projects,Rating
 from django.contrib.auth.models import User
 from .serializer import ProfileSerializer,ProjectsSerializer
@@ -144,7 +145,7 @@ class ProjectsList(APIView):
        return Response(serializers.data)
 
    def post(self, request, format=None):
-    serializers = ProjectsSerialize(data=request.data)
+    serializers = ProjectsSerializer(data=request.data)
     if serializers.is_valid():
         serializers.save()
         return Response(serializers.data, status=status.HTTP_201_CREATED)
