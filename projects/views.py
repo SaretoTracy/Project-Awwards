@@ -5,6 +5,8 @@ from django.http.response import HttpResponseRedirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib import messages 
+from django.contrib.auth.decorators import login_required
+
 from rest_framework import status
 from .models import Profile,Projects,Rating
 from django.contrib.auth.models import User
@@ -18,7 +20,7 @@ def index(request):
     
     
     return render(request, 'index.html')
-
+@login_required(login_url='/accounts/login/')
 def projects(request):  
 
     # Function that gets the date
@@ -29,7 +31,7 @@ def projects(request):
     return render(request, 'projects.html',{'posts':post})
 
 
-
+@login_required(login_url='/accounts/login/')
 def project_details(request, project_id):
    current_user = request.user
    all_ratings = Rating.objects.filter(project_id=project_id).all()
@@ -71,7 +73,7 @@ def project_details(request, project_id):
    else:
        form = RatingsForm()
    return render(request, 'details.html', {'current_user':current_user,'all_ratings':all_ratings,'project':project,'rating_form': form,'rating_status': rating_status})
-
+@login_required(login_url='/accounts/login/')
 def delete_post(request, pk):
     post = Projects.objects.get(id=pk)
     
@@ -84,7 +86,7 @@ def delete_post(request, pk):
 
     context = { 'obj':post }
     return render(request, 'delete.html', context)
-
+@login_required(login_url='/accounts/login/')
 def post_project(request):
     if request.method == 'POST':
         post_form = ProjectsPostForm(request.POST,request.FILES) 
@@ -97,6 +99,8 @@ def post_project(request):
     else:
         post_form = ProjectsPostForm()
     return render(request,'post_project.html',{"post_form":post_form})
+
+@login_required(login_url='/accounts/login/')    
 def profile(request):
     image = Projects.objects.all()
     profile = Profile.objects.all()
@@ -114,6 +118,8 @@ def updateprofile(request):
     else:
         profileform= ProfileForm()
     return render(request, 'update.html', {'profileform': profileform})
+
+@login_required(login_url='/accounts/login/')
 def search(request):
     if 'projects' in request.GET and request.GET["projects"]:
         search_term = request.GET.get("projects")
@@ -124,6 +130,7 @@ def search(request):
     else:
         message = "You haven't searched for any term"
         return render(request,'search.html',{"message":message})
+
 
 class ProfileList(APIView):
    def get(self, request, format=None):
